@@ -23,7 +23,7 @@ def load_crashes(path=DATA_FILE):
     return crashes
 
 
-# ---------------------------------------------------------------- searching
+
 # All text searches are case-insensitive substring matches, so
 # "air india" matches both Air India and Air India Express,
 # and "engine" matches "engine failure".

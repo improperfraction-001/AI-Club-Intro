@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-"""
-Airplane Crash Explorer
------------------------
-Search a curated database of notable aviation accidents (1956-2025)
-by airline, year, exact date, aircraft type, or cause of the crash.
-
-Run:   python3 main.py
-Data:  crashes.csv (keep it in the same folder as this file)
-
-Note: the dataset is a curated educational sample, not a complete
-accident record. Verify figures before quoting them anywhere serious.
-"""
 
 import csv
 from collections import Counter
@@ -23,10 +10,9 @@ DATA_FILE = Path(__file__).parent / "crashes.csv"
 DATE_FORMATS = ["%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y", "%d %b %Y", "%d %B %Y"]
 
 
-# ---------------------------------------------------------------- loading
 
 def load_crashes(path=DATA_FILE):
-    """Read the CSV into a list of dicts, converting types as we go."""
+    
     crashes = []
     with open(path, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
@@ -76,7 +62,6 @@ def parse_date(text):
     return None
 
 
-# ---------------------------------------------------------------- output
 
 def show_results(results):
     if not results:
@@ -116,7 +101,6 @@ def show_stats(crashes):
     print(f"  Most common causes  : {causes}\n")
 
 
-# ---------------------------------------------------------------- menu
 
 MENU = """
 ==========  AIRPLANE CRASH EXPLORER  ==========
@@ -170,7 +154,7 @@ def main():
             if when is not None:
                 show_results(search_date(crashes, when))
             elif q.isdigit() and len(q) == 4:
-                # Be forgiving: a bare year at the date prompt still works
+                
                 show_results(search_year(crashes, int(q)))
             else:
                 print("Couldn't read that date. Try formats like 1977-03-27, "
